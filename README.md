@@ -29,7 +29,7 @@ c = Client('you@example.org', 'Pa$$w0rd123', host='custom.decipherinc.com/api')
 
 All hosts are assumed to be over SSL (`https`).
 
-### Retrieve available surveys
+### Retrieve list of available surveys
 
 You can retrieve a list of all surveys in three formats:
 
