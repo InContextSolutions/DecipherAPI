@@ -1,0 +1,30 @@
+language: python
+python:
+    - 2.7
+    - 3.4
+env:
+    secure: PSEsQtw3bEOw2JqIxPhKCNcp1iflMiQIKfEOMbAdriT390k79x5FAJ5Q48L6BJjRw6ZCITNLmIsxn3P73jXKu+Yobve5U99TYJceDXZpRn9gYmuh5Z3pBMG0EJmbziM6r7XM9bP/yBsFv4trHmwSu4ONKMZ2gIoANXLXbFBCntFCQza4HASpn9pGXU1FsyW2NQG+MEXW2X5/Flj8SBkwY04jokU/SerKE6lMpigG951bobNljeJKftaGU5dfKQQEbFJZi771dBD0q0AFjuH3Ityc1ayzaHYOiarT3VuN6eaD9Wki9wOXwlUu/ev2NAhJjxpGcLiN8+23yvO8JZtxUw==
+before_install:
+    - pip install pep8
+install:
+    - pip install . --use-mirrors
+    - chmod +x tests/test-cli.sh
+script:
+    - python setup.py nosetests --with-cov --cover-package=decipher
+    - ./tests/test-cli.sh
+    - pep8 --ignore=E501 decipher/
+    - pep8 --ignore=E501 tests/
+notifications:
+    email: false
+after_success:
+    - export PYTHON_VERSION=`python -c "import sys; print(sys.version.split(',')[0])" | awk -F' ' '{print $1}'`
+    - export HIPCHAT="https://api.hipchat.com/v1/rooms/message?auth_token=${HIPCHAT_TOKEN}&format=json"
+    - export SHORT=`echo $COMMIT | cut -c 1-10`
+    - export HC_PREFIX="room_id=642430&from=Shippable&message=PyDecipher#${BUILD_NUMBER}+(${BRANCH}:${SHORT}:python=${PYTHON_VERSION})"
+    - curl -d "${HC_PREFIX}+build+passed&color=green" $HIPCHAT
+after_failure:
+    - export PYTHON_VERSION=`python -c "import sys; print(sys.version.split(',')[0])" | awk -F' ' '{print $1}'`
+    - export HIPCHAT="https://api.hipchat.com/v1/rooms/message?auth_token=${HIPCHAT_TOKEN}&format=json"
+    - export SHORT=`echo $COMMIT | cut -c 1-10`
+    - export HC_PREFIX="room_id=642430&from=Shippable&message=PyDecipher#${BUILD_NUMBER}+(${BRANCH}:${SHORT}:python=${PYTHON_VERSION})"
+    - curl -d "${HC_PREFIX}+build+passed&color=green" $HIPCHAT
