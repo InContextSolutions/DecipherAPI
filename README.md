@@ -2,7 +2,7 @@
 
 [![Build Status](https://api.shippable.com/projects/53bd62bb728a8df803885803/badge/master)](https://www.shippable.com/projects/53bd62bb728a8df803885803)
 
-Python client for Decipher's data and survey list API.
+Python client for [Decipher](https://www.decipherinc.com) data and survey list API.
 
 ## Installation
 
