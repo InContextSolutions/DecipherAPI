@@ -22,8 +22,10 @@ class Client(object):
             'User-Agent': 'decipher-python-client',
         })
 
-    def request(self, target, fmt='json'):
+    def request(self, target, fmt='json', return_uri=False):
         uri = self._build_uri(target)
+        if return_uri:
+            return uri
         response = self.session.get(uri)
         if response.status_code == requests.codes.OK and response.text:
             if fmt == 'json':
@@ -39,7 +41,7 @@ class Client(object):
     def _build_uri(self, target):
         return "https://{}{}".format(self.host, target)
 
-    def get_survey(self, survey, start=None, end=None, status=None, columns=None, filters=None, fmt='json'):
+    def get_survey(self, survey, start=None, end=None, status=None, columns=None, filters=None, fmt='json', return_uri=False):
         assert fmt in VALID_RESPONSE_FORMATS, "invalid format: {}".format(fmt)
         if status is not None:
             assert status in VALID_SURVEY_STATUS, "invalid status: {}".format(status)
@@ -73,9 +75,9 @@ class Client(object):
         if len(args) > 0:
             target = target + '&' + urlencode(args)
 
-        return self.request(target, fmt=fmt)
+        return self.request(target, fmt=fmt, return_uri=return_uri)
 
-    def list_surveys(self, fmt='json'):
+    def list_surveys(self, fmt='json', return_uri=False):
         assert fmt in VALID_RESPONSE_FORMATS, "invalid format: {}".format(fmt)
 
         target = '/surveylist'
@@ -89,4 +91,4 @@ class Client(object):
         if len(args) > 0:
             target += '?' + urlencode(args)
 
-        return self.request(target, fmt=fmt)
+        return self.request(target, fmt=fmt, return_uri=return_uri)
