@@ -1,14 +1,10 @@
 #Decipher
 
-[![Build Status](https://api.shippable.com/projects/53a455713a339cb7004e1af1/badge/master)](https://www.shippable.com/projects/53a455713a339cb7004e1af1)
+[![Build Status](https://api.shippable.com/projects/53bd62bb728a8df803885803/badge/master)](https://www.shippable.com/projects/53bd62bb728a8df803885803)
 
-Python client for Decipher's data and survey list API.
+Python client for [Decipher](https://www.decipherinc.com) data and survey list API.
 
 ## Installation
-
-Supports both Python 2.7 and 3.4.
-
-### Install from GitHub with pip:
 
     git clone git@github.com:InContextSolutions/Decipher.git
     cd Decipher
@@ -33,7 +29,7 @@ c = Client('you@example.org', 'Pa$$w0rd123', host='custom.decipherinc.com/api')
 
 All hosts are assumed to be over SSL (`https`).
 
-### Retrieve available surveys
+### Retrieve list of available surveys
 
 You can retrieve a list of all surveys in three formats:
 
