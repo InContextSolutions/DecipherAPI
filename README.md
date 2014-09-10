@@ -1,6 +1,6 @@
 #Decipher
 
-[![Build Status](https://api.shippable.com/projects/53bd62bb728a8df803885803/badge/master)](https://www.shippable.com/projects/53bd62bb728a8df803885803)
+[![Build Status](https://api.shippable.com/projects/540e6d593479c5ea8f9e4335/badge?branchName=master)](https://app.shippable.com/projects/540e6d593479c5ea8f9e4335/builds/latest)
 
 Python client for [Decipher](https://www.decipherinc.com) data and survey list API.
 
