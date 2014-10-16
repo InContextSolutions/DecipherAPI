@@ -19,13 +19,13 @@ tests_require = [
 ]
 
 setup(
-    name="decipher",
+    name="PyDecipher",
     version="0.1",
     author="Tristan Wietsma",
     author_email="quant@incontextsolutions.com",
     url="http://www.incontextsolutions.com/",
     download_url="https://github.com/InContextSolutions/Decipher/tarball/v0.1",
-    description="A Python client for Decipher",
+    description="A Python client for Decipher's Beacon API",
     keywords=['Decipher', 'survey'],
     packages=["decipher"],
     long_description=read('README.md'),
