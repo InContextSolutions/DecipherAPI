@@ -19,9 +19,9 @@ tests_require = [
 ]
 
 setup(
-    name="PyDecipher",
+    name="DecipherAPI",
     version="0.1",
-    author="Tristan Wietsma",
+    author="InContext Solutions",
     author_email="quant@incontextsolutions.com",
     url="http://www.incontextsolutions.com/",
     download_url="https://github.com/InContextSolutions/Decipher/tarball/v0.1",
