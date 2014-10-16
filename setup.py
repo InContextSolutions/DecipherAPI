@@ -22,9 +22,11 @@ setup(
     name="decipher",
     version="0.1",
     author="Tristan Wietsma",
-    author_email="tristan.wietsma@incontextsolutions.com",
-    url="",
+    author_email="quant@incontextsolutions.com",
+    url="http://www.incontextsolutions.com/",
+    download_url="https://github.com/InContextSolutions/Decipher/tarball/v0.1",
     description="A Python client for Decipher",
+    keywords=['Decipher', 'survey'],
     packages=["decipher"],
     long_description=read('README.md'),
     setup_requires=['nose'],
@@ -34,5 +36,6 @@ setup(
         'console_scripts': [
             'decipher = decipher:cli',
         ],
-    }
+    },
+    classifiers=[]
 )
