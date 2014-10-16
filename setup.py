@@ -1,9 +1,4 @@
-import os
 from setuptools import setup
-
-
-def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 
 install_requires = [
@@ -28,7 +23,6 @@ setup(
     description="A Python client for Decipher's Beacon API",
     keywords=['Decipher', 'survey'],
     packages=["decipher"],
-    long_description=read('README.md'),
     setup_requires=['nose'],
     install_requires=install_requires,
     tests_require=tests_require,
