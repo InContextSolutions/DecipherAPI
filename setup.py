@@ -15,7 +15,7 @@ tests_require = [
 
 setup(
     name="DecipherAPI",
-    version="0.102",
+    version="0.103",
     author="InContext Solutions",
     author_email="quant@incontextsolutions.com",
     url="http://www.incontextsolutions.com/",
