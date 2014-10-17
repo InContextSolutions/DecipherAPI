@@ -1,6 +1,6 @@
 from datetime import datetime
 from unittest import TestCase
-from decipher.client import Client, DEFAULT_HOST
+from DecipherAPI.client import Client, DEFAULT_HOST
 
 
 def GetDimensions(text, delim=','):
