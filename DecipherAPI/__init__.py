@@ -1,10 +1,10 @@
 import simplejson as json
 import dateutil.parser
-import decipher.client
+import DecipherAPI.client
 
 
 def list_command(args):
-    client = decipher.client.Client(
+    client = DecipherAPI.client.Client(
         args.username, args.password, host=args.host)
     result = client.list_surveys(fmt=args.fmt)
     if args.fmt == 'json':
@@ -14,7 +14,7 @@ def list_command(args):
 
 
 def pull_command(args):
-    client = decipher.client.Client(
+    client = DecipherAPI.client.Client(
         args.username, args.password, host=args.host)
     start_t = args.start
     if start_t:
@@ -43,7 +43,7 @@ def cli():
     import argparse
 
     desc = """A command-line utility for interacting with the Decipher API.
-    Help is available on subcommands (e.g. `decipher pull --help`)"""
+    Help is available on subcommands (e.g. `DecipherAPI.pull --help`)"""
 
     parser = argparse.ArgumentParser(description=desc)
     subparsers = parser.add_subparsers(title='valid subcommands')
@@ -53,7 +53,7 @@ def cli():
     parser.add_argument(
         "-P", "--password", help="user password", type=str, required=True)
     parser.add_argument(
-        "-H", "--host", help="host", default=decipher.client.DEFAULT_HOST, type=str)
+        "-H", "--host", help="host", default=DecipherAPI.client.DEFAULT_HOST, type=str)
 
     # pull command
     pull_parser = subparsers.add_parser('pull', help='pull survey data')
