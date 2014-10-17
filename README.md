@@ -6,9 +6,15 @@ Python client for [Decipher](https://www.decipherinc.com) data and survey list A
 
 ## Installation
 
+### From Source
+
     git clone git@github.com:InContextSolutions/Decipher.git
     cd Decipher
     pip install .
+    
+### From PyPI
+
+    pip install DecipherAPI
 
 ## Usage
 
