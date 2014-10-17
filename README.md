@@ -1,4 +1,4 @@
-#Decipher
+#DecipherAPI
 
 [![Build Status](https://api.shippable.com/projects/540e6d593479c5ea8f9e4335/badge?branchName=master)](https://app.shippable.com/projects/540e6d593479c5ea8f9e4335/builds/latest)
 
