@@ -10,9 +10,9 @@ install:
     - pip install . --use-mirrors
     - chmod +x tests/test-cli.sh
 script:
-    - python setup.py nosetests --with-cov --cover-package=decipher
+    - python setup.py nosetests --with-cov --cover-package=DecipherAPI
     - ./tests/test-cli.sh
-    - pep8 --ignore=E501 decipher/
+    - pep8 --ignore=E501 DecipherAPI/
     - pep8 --ignore=E501 tests/
 notifications:
     email: false
