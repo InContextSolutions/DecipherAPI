@@ -19,7 +19,7 @@ setup(
     author="InContext Solutions",
     author_email="quant@incontextsolutions.com",
     url="http://www.incontextsolutions.com/",
-    download_url="https://github.com/InContextSolutions/Decipher/tarball/v0.1",
+    download_url="https://github.com/InContextSolutions/DecipherAPI/tarball/v0.1",
     description="A Python client for Decipher's Beacon API",
     keywords=['Decipher', 'survey'],
     packages=["DecipherAPI"],
