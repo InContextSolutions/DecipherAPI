@@ -26,7 +26,6 @@ class Client(object):
 
     def request(self, target, fmt='json', return_uri=False):
         uri = self._build_uri(target)
-        print uri
         if return_uri:
             return uri
         response = self.session.get(uri)
