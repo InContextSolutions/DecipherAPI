@@ -30,7 +30,6 @@ class Client(object):
             return uri
         response = self.session.get(uri)
         if response.status_code == requests.codes.OK and response.text:
-            print response.text
             if fmt == 'json':
                 return simplejson.loads(response.text)
             if fmt == 'tsv':
