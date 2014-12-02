@@ -14,20 +14,24 @@ VALID_SURVEY_STATUS = [
 
 class Client(object):
 
-    def __init__(self, username, password, host=DEFAULT_HOST):
+    def __init__(self, username, password, host=DEFAULT_HOST, apikey=None):
         self.host = host
         self.session = requests.session()
         self.session.auth = (username, password)
         self.session.headers.update({
-            'User-Agent': 'decipher-python-client',
+            'User-Agent': 'decipher-python-client'
         })
+        if apikey:
+            self.session.headers.update({'x-apikey': apikey})
 
     def request(self, target, fmt='json', return_uri=False):
         uri = self._build_uri(target)
+        print uri
         if return_uri:
             return uri
         response = self.session.get(uri)
         if response.status_code == requests.codes.OK and response.text:
+            print response.text
             if fmt == 'json':
                 return simplejson.loads(response.text)
             if fmt == 'tsv':
@@ -77,7 +81,10 @@ class Client(object):
 
         return self.request(target, fmt=fmt, return_uri=return_uri)
 
-    def list_surveys(self, fmt='json', return_uri=False):
+    def list_surveys(self, fmt='json', return_uri=False, detail=False):
+        if detail:
+            return self._list_detail()
+
         assert fmt in VALID_RESPONSE_FORMATS, "invalid format: {}".format(fmt)
 
         target = '/surveylist'
@@ -92,3 +99,10 @@ class Client(object):
             target += '?' + urlencode(args)
 
         return self.request(target, fmt=fmt, return_uri=return_uri)
+
+    def _list_detail(self):
+        assert 'x-apikey' in self.session.headers, "Need to set apikey"
+
+        target = '/v1/rh/companies/all/surveys'
+
+        return self.request(target)
