@@ -80,9 +80,6 @@ class Client(object):
         return self.request(target, fmt=fmt, return_uri=return_uri)
 
     def list_surveys(self, fmt='json', return_uri=False, detail=False):
-        if detail:
-            return self._list_detail()
-
         assert fmt in VALID_RESPONSE_FORMATS, "invalid format: {}".format(fmt)
 
         target = '/surveylist'
@@ -98,7 +95,7 @@ class Client(object):
 
         return self.request(target, fmt=fmt, return_uri=return_uri)
 
-    def _list_detail(self):
+    def list_details(self):
         assert 'x-apikey' in self.session.headers, "Need to set apikey"
 
         target = '/v1/rh/companies/all/surveys'
