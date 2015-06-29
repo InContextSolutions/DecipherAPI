@@ -43,10 +43,13 @@ class Client(object):
     def _build_uri(self, target):
         return "https://{}{}".format(self.host, target)
 
-    def get_survey(self, survey, start=None, end=None, status=None, columns=None, filters=None, fmt='json', return_uri=False):
-        assert fmt in VALID_RESPONSE_FORMATS, "invalid format: {}".format(fmt)
+    def get_survey(self, survey, start=None, end=None, status=None,
+            columns=None, filters=None, fmt='json', return_uri=False):
+        assert fmt in VALID_RESPONSE_FORMATS,\
+            "invalid format: {}".format(fmt)
         if status is not None:
-            assert status in VALID_SURVEY_STATUS, "invalid status: {}".format(status)
+            assert status in VALID_SURVEY_STATUS,\
+                "invalid status: {}".format(status)
 
         target = '/data/tab?survey={}'.format(survey)
 
@@ -80,7 +83,8 @@ class Client(object):
         return self.request(target, fmt=fmt, return_uri=return_uri)
 
     def list_surveys(self, fmt='json', return_uri=False, detail=False):
-        assert fmt in VALID_RESPONSE_FORMATS, "invalid format: {}".format(fmt)
+        assert fmt in VALID_RESPONSE_FORMATS,\
+            "invalid format: {}".format(fmt)
 
         target = '/surveylist'
         args = {}
