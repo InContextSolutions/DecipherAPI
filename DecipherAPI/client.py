@@ -14,10 +14,14 @@ VALID_SURVEY_STATUS = [
 
 class Client(object):
 
-    def __init__(self, username, password, host=DEFAULT_HOST, apikey=None):
+    def __init__(self, username=None, password=None, host=DEFAULT_HOST,
+        apikey=None):
         self.host = host
         self.session = requests.session()
-        self.session.auth = (username, password)
+
+        if username and password:
+            self.session.auth = (username, password)
+
         self.session.headers.update({
             'User-Agent': 'decipher-python-client'
         })
@@ -102,6 +106,12 @@ class Client(object):
     def list_details(self):
         assert 'x-apikey' in self.session.headers, "Need to set apikey"
 
-        target = '/v1/rh/companies/all/surveys'
+        return self.request('/v1/rh/companies/all/surveys')
 
-        return self.request(target)
+    def datamap(self, survey, fmt='json', return_uri=False):
+        assert 'x-apikey' in self.session.headers, "Need to set apikey"
+
+        target = '/v1/surveys/selfserve/{}/datamap?format={}'.format(
+                survey, fmt)
+
+        return self.request(target, fmt=fmt, return_uri=return_uri)
