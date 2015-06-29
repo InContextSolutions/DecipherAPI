@@ -14,10 +14,14 @@ VALID_SURVEY_STATUS = [
 
 class Client(object):
 
-    def __init__(self, username, password, host=DEFAULT_HOST, apikey=None):
+    def __init__(self, username=None, password=None, host=DEFAULT_HOST,
+        apikey=None):
         self.host = host
         self.session = requests.session()
-        self.session.auth = (username, password)
+
+        if username and password:
+            self.session.auth = (username, password)
+
         self.session.headers.update({
             'User-Agent': 'decipher-python-client'
         })
@@ -43,10 +47,13 @@ class Client(object):
     def _build_uri(self, target):
         return "https://{}{}".format(self.host, target)
 
-    def get_survey(self, survey, start=None, end=None, status=None, columns=None, filters=None, fmt='json', return_uri=False):
-        assert fmt in VALID_RESPONSE_FORMATS, "invalid format: {}".format(fmt)
+    def get_survey(self, survey, start=None, end=None, status=None,
+            columns=None, filters=None, fmt='json', return_uri=False):
+        assert fmt in VALID_RESPONSE_FORMATS,\
+            "invalid format: {}".format(fmt)
         if status is not None:
-            assert status in VALID_SURVEY_STATUS, "invalid status: {}".format(status)
+            assert status in VALID_SURVEY_STATUS,\
+                "invalid status: {}".format(status)
 
         target = '/data/tab?survey={}'.format(survey)
 
@@ -80,7 +87,8 @@ class Client(object):
         return self.request(target, fmt=fmt, return_uri=return_uri)
 
     def list_surveys(self, fmt='json', return_uri=False, detail=False):
-        assert fmt in VALID_RESPONSE_FORMATS, "invalid format: {}".format(fmt)
+        assert fmt in VALID_RESPONSE_FORMATS,\
+            "invalid format: {}".format(fmt)
 
         target = '/surveylist'
         args = {}
@@ -98,6 +106,12 @@ class Client(object):
     def list_details(self):
         assert 'x-apikey' in self.session.headers, "Need to set apikey"
 
-        target = '/v1/rh/companies/all/surveys'
+        return self.request('/v1/rh/companies/all/surveys')
 
-        return self.request(target)
+    def datamap(self, survey, fmt='json', return_uri=False):
+        assert 'x-apikey' in self.session.headers, "Need to set apikey"
+
+        target = '/v1/surveys/selfserve/{}/datamap?format={}'.format(
+                survey, fmt)
+
+        return self.request(target, fmt=fmt, return_uri=return_uri)

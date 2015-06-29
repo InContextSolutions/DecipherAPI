@@ -23,7 +23,7 @@ Python client for [Decipher](https://www.decipherinc.com) data and survey list A
 Creating a client requires your decipher username and password.
 
 ```python
-from decipher.client import Client
+from DecipherAPI.client import Client
 c = Client('you@example.org', 'Pa$$w0rd123')
 ```
 
